@@ -1,7 +1,7 @@
 <template>
  <div  class="container pt-4">
   <div class="row m-auto align-items-baseline">
-  <div class="col-5 col-md-2">
+  <div class="col-4 col-md-2">
     
              <div class="accordion" id="y">
                 <div class="accordion-item border-0">
@@ -11,20 +11,22 @@
                     <div id="prices" class="collapse accordion-collapse" data-bs-parent="#y">
                         <div class="list-group">
                             <a class="list-group-item list-group-item-action" :class="min==0 && max==99999999999 ? 'active':''" href="#" @click="min=0;max=99999999999">All</a>
-                            <a class="list-group-item list-group-item-action" :class="min==0 && max==30000 ? 'active':''" href="#" @click="min=0;max=30000">0 - 30,000</a>
-                            <a class="list-group-item list-group-item-action" :class="min==30000?'active':''" href="#" @click="min=30000;max=60000">30,000 - 60,000</a>
-                            <a class="list-group-item list-group-item-action" :class="min==60000?'active':''" href="#" @click="min=60000;max=90000">60,000 - 90,000</a>
-                            <a class="list-group-item list-group-item-action" :class="min==90000?'active':''" href="#" @click="min=90000;max=99999999999">above 90,000</a>
+                            <a class="list-group-item list-group-item-action" :class="min==0 && max==30000 ? 'active':''" href="#" @click="min=0;max=30000">drama</a>
+                            <a class="list-group-item list-group-item-action" :class="min==30000?'active':''" href="#" @click="min=30000;max=60000">literary</a>
+                            <a class="list-group-item list-group-item-action" :class="min==60000?'active':''" href="#" @click="min=60000;max=90000">Religious</a>
+                            <a class="list-group-item list-group-item-action" :class="min==90000?'active':''" href="#" @click="min=90000;max=99999999999">other</a>
                         </div>
                     </div>
                  </div>
         </div>
 
   </div>
-    <div class="col-7 mb-5">
+    <div class="col-6 mb-5">
        <input type="search" class="form-control  m-auto p-1 center" placeholder=" Search Hear ..." v-model="search">
-  </div>
-  </div>
+    </div>
+    <div class="col-2">  <router-link to="/ThreadView" class="btn w-100">+ </router-link></div>
+
+   </div>
                
         <div class="row align-items-flex-start h-100">
       <div class="col-2 col-md-3 p-1 me-2">

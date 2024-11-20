@@ -10,23 +10,31 @@
                       <div class="d-flex align-self-end p-2"><i class="bi bi-pencil-fill"></i></div>
                      </div>
                      <input type="text" name="name" id="" v-model="name" class="form-control  mt-3 p-1 center"> 
-                <div>
-                  <p>
-                         Age : {{selectedTodo.age}}  yers 
-                         </p>
-                        <p>
-                          Country : sudan {{selectedTodo.jope}}
-                        </p>
+              
+                 <div class=" p-3  float-left">
+                    <div class="d-flex align-items-start flex-column">
+                      <p> Age : {{selectedTodo.age}}  yers  </p>
+                      <p> Country : sudan {{selectedTodo.jope}} </p>
+                      <p>participants : 28 {{selectedTodo.title}}</p>
+                      <p> {{selectedTodo.sub}}</p>
+                      <a href="#">  <i class="bi bi-heart text-dark"  style="font-size: 28px"> 50 lik </i></a> <br>
+                      <a href="#"> <i class="bi bi-share text-dark "   style="font-size: 28px"> 100 shares</i></a>
+                      </div> 
+                  
                 </div>
                         
                    </div>
-                   <div class="col-12 col-md-8 p-3  float-left">
-                    <div class="d-flex align-items-start flex-column">
-                      <p>participants : 28 {{selectedTodo.title}}</p>
-                      <p> {{selectedTodo.sub}}</p>
-                      <a href="#">  <i class="bi bi-heart text-dark me-3"  style="font-size: 28px"> 50 lik </i></a> <br>
-                      <a href="#"> <i class="bi bi-share text-dark me-3"   style="font-size: 28px"> 100 shares</i></a>
-                      </div> 
+                   <div class="col-12 col-md-8 p-3  float-left d-flex flex-wrap">
+                    <div class="col-5 d-flex align-items-start flex-column h-50" :key="n" v-for="n in 4">
+           <div class="shadow-sm rounded-3 px-md-6" style="padding: 15px ;"> 
+               <h5>name the participants</h5>
+               <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+               <button class="btn col-5">Delet</button>
+               <button class="btn col-5">Edit</button>
+               <button class="btn col-5">Share</button>
+
+              </div>
+                    </div> 
                     </div>
                 
              </div>     
@@ -65,22 +73,14 @@ export default {
     return {
        
        selectedTodo:[],
-       name:this.name,
-       price:this.price,
-       img:this.img,
+       name:'Doaa Osman',
+        img:this.img,
       skill:this.skill,
     }
   },
   methods:{
      
-        editToDo(){
-        var index = this.$store.state.jobs.findIndex(a=>a.id==this.$route.jobs.id)
-        this.$store.state.jobs[index]=this.selectedTodo
-        console.log(this.selectedTodo)
-        console.log("hu")
-        this.$store.state.jobs.push({name:this.name,age:this.age,skill:this.skill,Decribtion:this.descr,id:this.$store.state.jobs.applecans[this.$store.state.jobs.applecans.length-1].id+1})
-
-       }
+        
     }
 }
 
@@ -88,15 +88,15 @@ export default {
  
 <style>
 button{
-
+margin: 3px;
   transition: all .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
  }
 button:hover { 
+    color: #fff !important;
     outline: 0;
     transform: scaleX(1.2);
     transition: all .15s ease-in-out;
-
-    }
+     }
     a {
       text-decoration: none;
     }

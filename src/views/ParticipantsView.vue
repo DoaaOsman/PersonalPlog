@@ -25,10 +25,12 @@
        <input type="search" class="form-control  m-auto p-1 center" placeholder=" Search Hear ..." v-model="search">
     </div>
     <div class="col-2">  <router-link to="/ThreadView" class="btn w-100">+ </router-link></div>
+    <button class="btn text-dark w-25" @click="found">a</button>  
 
    </div>
-               
+ 
         <div class="row align-items-flex-start h-100">
+          <!-- sideNav  -->
       <div class="col-2 col-md-3 p-1 me-2">
        <div style="height: 80vh;">
           <div class="p-2 rounded mb-2 " style="color: white; background: black;" :key="TheType" v-for="TheType in $store.state.typeTheParticipats">
@@ -36,32 +38,32 @@
       </div>
       </div>
       </div>
-      <div class="col-9 col-md-8 d-flex flex-wrap" style="align-content: flex-start !important">
-          <div class=" shadow-sm rounded-3 px-md-6 dark" style="padding: 15px ;"  :key="person" v-for="person in $store.state.persons"> 
+      <!-- participants -->
+       <div class="col-9 col-md-7 d-flex flex-wrap" style="align-content: flex-start !important">
+          <div class=" shadow-sm rounded-3 px-md-6 w-100" style="padding: 15px ;"  :key="person" v-for="person in fuondSearch"> 
               <div class="row">
               <div class="col-12 col-md-4  border-end border-0 border-warning border-sd-0 pt-3 ">
-                     <div style='background :url(96.jpg) center;background-size:cover;  width:100px; height:100px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
+                     <div style='  background : center;background-size:cover;  width:100px; height:100px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
                       <h6>{{person.name}}</h6>
-                     <p class="text-dark text-header"> <small> {{person.age}}<br> {{person.jope}} </small> </p>
-                  </div>
+                   </div>
                    <div class="col-12 col-md-8 p-3  float-left">
-                      <h5>{{person.title}}</h5>
-                      <p>{{person.sub}}</p>
-                      </div>
+                      <h5>{{person.participints[person.participints.length-1].title}}  </h5>
+                      <p>{{person.participints[person.participints.length-1].body}}</p>
+                       </div>
                   <div >
-                    <a href="#form"> <i class="bi bi-chat-text text-dark me-3"   style="font-size: 30px "></i></a>
-                     <a href="#">    <i class="bi bi-heart text-dark me-3"       style="font-size: 28px"></i></a>
+                    <a href="#form"> <i class="bi bi-chat-text text-dark me-3"   style="font-size: 30px "></i>+</a>
+                     <a href="#">    <i class="bi bi-heart text-dark me-3"       style="font-size: 28px"></i> {{person.participints[0].liks }}</a>
                       <a href="#">   <i class="bi bi-share text-dark me-3"       style="font-size: 28px"></i></a>
                   </div>
-             </div>
+              </div>
              <hr>
-             <div class="row">
-                 <div class="col-3">
-                    <div style='background :url(96.jpg) center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
-                      <small>{{person.name}}</small>
+             <div class="row" :key="comment" v-for="comment in person.participints[person.participints.length-1].comments">
+                 <div class="col-3" >
+                    <div style=' background : center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
+                      <small>{{comment.name}}</small>
                  </div>
                       <div class="col-8 float-left">
-                       <p>{{person.sub}}</p>
+                       <p>{{comment.body}}</p>
                       </div>
                       <div >
                      <a href="#form"> <i class="bi bi-chat-text text-dark me-3"   style="font-size: 30px "></i></a>
@@ -77,15 +79,37 @@
   </template>
 
 <script>
+ 
 export default {
   data(){
-                return {
-                    name:null,
-                    age:null,
-                    title:null,
-                    sup:null,
-                     }
+        return {
+            name:null,
+              age:null,
+              title:null,
+              sup:null,
+              search:' ',
+             }
             },
+       computed:{
+        fuondSearch($data) {
+             return this.$store.state.persons.filter((person)=>{
+               person.participints.forEach((participint)=>{
+               if(participint.title.toLowerCase().includes($data.search.toLowerCase())){
+                console.log(participint)
+              
+                     return true 
+                    }
+            })
+            })     
+        },
+      },
+
+      methods:{
+        found(){
+          console.log(this.fuondSearch)
+        }
+      }
+
 };
 </script>
 <style>

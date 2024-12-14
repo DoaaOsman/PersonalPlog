@@ -6,15 +6,15 @@
              <div class="accordion" id="y">
                 <div class="accordion-item border-0">
                     <div class="accordion-header">
-                        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#prices">Filter</button>
+                        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#prices"> filter  {{  $store.state.TheType }} </button>
                     </div>
                     <div id="prices" class="collapse accordion-collapse" data-bs-parent="#y">
                         <div class="list-group">
-                            <a class="list-group-item list-group-item-action" :class="min==0 && max==99999999999 ? 'active':''" href="#" @click="min=0;max=99999999999">All</a>
-                            <a class="list-group-item list-group-item-action" :class="min==0 && max==30000 ? 'active':''" href="#" @click="min=0;max=30000">drama</a>
-                            <a class="list-group-item list-group-item-action" :class="min==30000?'active':''" href="#" @click="min=30000;max=60000">literary</a>
-                            <a class="list-group-item list-group-item-action" :class="min==60000?'active':''" href="#" @click="min=60000;max=90000">Religious</a>
-                            <a class="list-group-item list-group-item-action" :class="min==90000?'active':''" href="#" @click="min=90000;max=99999999999">other</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.TheType=='' ? 'active':''" href="#" @click="$store.state.TheType=''">All</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.TheType=='drama'  ? 'active':''" href="#" @click="$store.state.TheType='drama'">drama</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.TheType=='literary'  ?'active':''" href="#" @click="$store.state.TheType='literary'">literary</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.TheType=='Religious'  ?'active':''" href="#" @click="$store.state.TheType='Religious'">Religious</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.TheType=='other' ?'active':''" href="#" @click="$store.state.TheType='other'">other</a>
                         </div>
                     </div>
                  </div>
@@ -25,8 +25,6 @@
        <input type="search" class="form-control  m-auto p-1 center" placeholder=" Search Hear ..." v-model="search">
     </div>
     <div class="col-2">  <router-link to="/ThreadView" class="btn w-100">+ </router-link></div>
-    <button class="btn text-dark w-25" @click="found">a</button>  
-
    </div>
  
         <div class="row align-items-flex-start h-100">
@@ -40,7 +38,7 @@
       </div>
       <!-- participants -->
        <div class="col-9 col-md-7 d-flex flex-wrap" style="align-content: flex-start !important">
-          <div class=" shadow-sm rounded-3 px-md-6 w-100" style="padding: 15px ;"  :key="person" v-for="person in fuondSearch"> 
+          <div class=" shadow-sm rounded-3 px-md-6 w-100" style="padding: 15px ;"  :key="person" v-for="person in filtredSearch"> 
               <div class="row">
               <div class="col-12 col-md-4  border-end border-0 border-warning border-sd-0 pt-3 ">
                      <div style='  background : center;background-size:cover;  width:100px; height:100px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
@@ -49,13 +47,49 @@
                    <div class="col-12 col-md-8 p-3  float-left">
                       <h5>{{person.participints[person.participints.length-1].title}}  </h5>
                       <p>{{person.participints[person.participints.length-1].body}}</p>
+                       
                        </div>
-                  <div >
-                    <a href="#form"> <i class="bi bi-chat-text text-dark me-3"   style="font-size: 30px "></i>+</a>
-                     <a href="#">    <i class="bi bi-heart text-dark me-3"       style="font-size: 28px"></i> {{person.participints[0].liks }}</a>
-                      <a href="#">   <i class="bi bi-share text-dark me-3"       style="font-size: 28px"></i></a>
+          <!-- row comment liks share -->
+                  <div class="row">
+                      <a href="#"  class="col-3">    <i class="bi bi-heart text-dark" ></i> {{person.participints[person.participints.length-1].liks}}</a>
+                      <a href="#form" class="col-3"> <i class="bi bi-chat-text text-dark me-3"></i>comment</a>
+                      <a href="#"  class="col-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">   <i class="bi bi-share text-dark me-3"></i></a>
                   </div>
-              </div>
+ <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-6 p-0 border-0" id="exampleModalToggleLabel">Share With ...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+                    <a href="#"  class="col-3">    <i class="bi bi-chat-text text-dark me-3"   style="font-size: 30px " ></i></a>
+                    <a href="#"  class="col-3">    <i class="bi bi-heart text-dark"            style="font-size: 28px"></i></a>
+                    <a href="#"  class="col-3">    <i class="bi bi-share text-dark me-3"       style="font-size: 28px"></i></a>
+                  </div>
+       </div>
+       
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+               </div>
              <hr>
              <div class="row" :key="comment" v-for="comment in person.participints[person.participints.length-1].comments">
                  <div class="col-3" >
@@ -75,6 +109,7 @@
             </div>
         
        </div>
+
       </div>
   </template>
 
@@ -87,32 +122,25 @@ export default {
               age:null,
               title:null,
               sup:null,
-              search:' ',
+              search:'',
              }
             },
        computed:{
-        fuondSearch($data) {
-             return this.$store.state.persons.filter((person)=>{
-               person.participints.forEach((participint)=>{
-               if(participint.title.toLowerCase().includes($data.search.toLowerCase())){
-                console.log(participint)
-              
-                     return true 
-                    }
-            })
-            })     
-        },
-      },
+       
+        filtredSearch() {
+        let self = this;
+         return this.$store.state.persons.filter((person) =>
+        person?.participints?.some((item) =>
+          item?.title?.toLowerCase().includes(self.search?.toLowerCase()) || item?.type == this.$store.state.TheType
+        )
+      )}
 
-      methods:{
-        found(){
-          console.log(this.fuondSearch)
-        }
       }
+      
 
 };
 </script>
-<style>
+<style scoped>
 .form-control {
   border-radius: 20px;
   outline-color: white ;
@@ -126,11 +154,21 @@ export default {
 }
 .accordion-button:not(.collapsed) {
     color: #ffc107;
-    background-color: #ffffff;}
-    div#prices {
+    background-color: #ffffff;
+    }
+div#prices {
       position: absolute;
     }
-.list-group-item.active {
+    a.col-3 {
+     color: #ffc925; 
+}
+
+a.col-3:hover {
+     color: #fff;
+    background: #ffc925;
+    border-radius: 20px;
+}
+ .list-group-item.active {
     z-index: 2;
     color: #fff;
     background-color: #ffc107;

@@ -2,10 +2,13 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-     selectedCondition:'',
-    selectedCompany:'',
     TheType:'',
-    typeTheParticipats:[
+    activeTab:'login',
+    sortWith:'',
+    liks:false ,
+    selectedCondition:'',
+    selectedCompany:'',
+     typeTheParticipats:[
        {id:1,name:"since"},
        {id:2,name:"drama"},
        {id:3,name:"since"},
@@ -21,7 +24,9 @@ export default createStore({
         img:"3.jpg",
         participints:[
           { id:1 ,title:"the titel" ,body:'work any wary' ,liks:550 ,type:"Religious",
-            comments:[{id:1 ,name:"mona" , body:'work any wary' ,liks:70, Replaycomments:[{ }] } ]
+            comments:[{id:1 ,name:"mona" , body:'work any wary' ,liks:70, Replaycomments:[{ }] },
+            {id:2 ,name:"hany" , body:'work any wary' ,liks:70, Replaycomments:[{ }] },
+            {id:3 ,name:"noon" , body:'work any wary' ,liks:70, Replaycomments:[{ }] } ]
            },
            
            { id:2 ,title:"particip2" ,body:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, impedit aperiam accusantium dignissimos reiciendis temporibus!' ,liks:100 ,type:"other",
@@ -37,12 +42,21 @@ export default createStore({
           img:"3.jpg",
           participints:[
             { id:1 ,title:"the titel" ,body:'work any wary' ,liks:550 ,type:"other",
-              comments:[{id:1 ,name:"mona" , body:'work any wary' ,liks:70 ,
+              comments:[{id:1 ,name:"doaa" , body:'work any wary' ,liks:70 ,
               Replaycomments:[{ }] }
             ]
              },
              { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"drama",
-              comments:[ { id:1 ,name:"ali" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+              comments:[ { id:1 ,name:"ahmmed" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+             },
+             { id:3 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"drama",
+              comments:[ { id:1 ,name:"ahmmed" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+             },
+             { id:4 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"drama",
+              comments:[ { id:1 ,name:"ahmmed" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+             },
+             { id:5 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"drama",
+              comments:[ { id:1 ,name:"ahmmed" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
              }             
              ]
           },
@@ -59,7 +73,7 @@ export default createStore({
                   ]
                    },
                    { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
-                    comments:[ { id:1 ,name:"ali" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                    comments:[ { id:1 ,name:"aly" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
                    }             
                    ]
             },
@@ -76,7 +90,7 @@ export default createStore({
                 ]
                  },
                  { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
-                  comments:[ { id:1 ,name:"ali" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
                  }             
                  ]
               }
@@ -94,7 +108,7 @@ export default createStore({
                   ]
                    },
                    { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
-                    comments:[ { id:1 ,name:"ali" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                    comments:[ { id:1 ,name:"alaa" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
                    }             
                    ]
                 }       

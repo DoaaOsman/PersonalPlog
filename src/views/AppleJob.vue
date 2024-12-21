@@ -29,9 +29,11 @@
            <div class="shadow-sm rounded-3 px-md-6" style="padding: 15px ;"> 
                <h5>name the participants</h5>
                <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+                <div>
                <button class="btn col-5">Delet</button>
                <button class="btn col-5">Edit</button>
                <button class="btn col-5">Share</button>
+                </div>
 
               </div>
                     </div> 

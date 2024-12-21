@@ -3,7 +3,7 @@
         <div class="row w-100 mt-5" >
         <div class="col-8 col-sm-10 col-md-6 col-lg-4 col-xl-3 col-xxl-3 m-auto d-flex  justify-content-center p-2 ">
             <transition name="form ">
-        <form class="bg-light p-3 p-md-4 col-7 col-md-4 h-50" v-if="activeTab=='login'">
+        <form class="bg-light p-3 p-md-4 col-7 col-md-4 h-50" v-if="$store.state.activeTab=='login'">
             <div class="mb-1 mb-sm-3">
                 <label class="form-label">Username</label>
                 <input type="text" class="form-control">
@@ -12,14 +12,14 @@
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control">
             </div>
-          <a href="#" class="nav-link text-dark" @click="activeTab='register'">create an account ?</a>
+          <a href="#" class="nav-link text-dark" @click="$store.state.activeTab='register'" >create an account ?</a>
 
             <button class="btn col-5">Login</button>
         </form>
     </transition>
 
     <transition name="form">
-        <form class="bg-light p-4 p-md-4 col-7 col-md-4 shadow-sm" v-if="activeTab=='register'">
+        <form class="bg-light p-4 p-md-4 col-7 col-md-4 shadow-sm" v-if="$store.state.activeTab=='register'">
 
             <div class="mb-1 mb-sm-3">
                 <label class="form-label">First Name</label>
@@ -38,7 +38,7 @@
                 <input type="password" class="form-control">
             </div>
             
-         <a href="#" class="nav-link text-dark" @click="activeTab='login'">I have an account</a>
+         <a href="#" class="nav-link text-dark" @click="$store.state.activeTab='login'">I have an account</a>
 
             <button class="btn col-5">Sign Up</button>
         </form>
@@ -51,8 +51,7 @@
  export default({
     data(){
           return {
-              activeTab:'login'
-          }
+           }
         } 
 })
 </script>

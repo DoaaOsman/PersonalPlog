@@ -38,7 +38,7 @@
       </div>
       <!-- participants -->
        <div class="col-9 col-md-7 d-flex flex-wrap" style="align-content: flex-start !important">
-          <div class=" shadow-sm rounded-3 px-md-6 w-100 mb-5" :key="person" v-for="person in filtredSearch"> 
+          <div class=" shadow-sm rounded-3 px-md-6 w-100 mb-5" :key="person" v-for="(person , index) in filtredSearch"> 
               <div class="row">
               <div class="col-12 col-md-4  border-end border-0 border-warning border-sd-0 pt-3 ">
                      <div style='  background : center;background-size:cover;  width:100px; height:100px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
@@ -53,10 +53,9 @@
                   <div class="row">
                       <a href="#"  class="col-3">    
                         <i  class="bi bi-heart"  v-if="$store.state.liks==false" @click="$store.state.liks=true"></i>
-                        <i class="bi bi-heart-fill "  v-else  @click="$store.state.liks=false"></i>
-                             {{person.participints[person.participints.length-1].liks}}</a>
-                      <a class="col-3" role="button" @click="this.AddNewComent=true"> <i class="bi bi-chat-text me-3"></i>comment</a>
- 
+                        <i class="bi bi-heart-fill "  v-else  @click="$store.state.liks=false"></i>  {{person.participints[person.participints.length-1].liks}}
+                      </a>
+                      <a class="col-3" role="button" @click="(this.AddNewComent=true) && (this.indexParticipant=index)"> <i class="bi bi-chat-text me-3"></i>comment</a>
                       <a href="#"  class="col-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">   <i class="bi bi-share me-3"></i> share</a>
                   </div>
  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -81,40 +80,46 @@
 </div> 
                </div>
              <hr>
-             <div class="row comments" :key="comment" v-for="comment in  person.participints[person.participints.length-1].comments">
-                 <div class="col-3" >
+             <div class="row comments" :key="comment" v-for="comment  in  person.participints[person.participints.length-1].comments">
+                <div class="col-12 d-flex p-2">
+                  <div class="col-3" >
                     <div style=' background : center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>
                       <small>{{comment.name}}</small>
                       {{ comments }}
                  </div>
                       <div class="col-8 float-left">
                        <p>{{comment.body}}</p>
-                        <div >
+                         <div >
                      <a href="#form"> <i class="bi bi-chat-text text-dark me-3" ></i></a>
                      <a href="#">    <i class="bi bi-heart text-dark me-3"     ></i></a>
                      <a href="#">   <i class="bi bi-share text-dark me-3"   ></i></a>
                   </div>
                       </div>
                     
-                    </div> 
+                </div>
+                    </div>
                   <!-- new comment -->
                      
 
-                  <div class="row pt-3" v-show="this.AddNewComent==true" id="form" @click="this.$store.state.persons.comments.push({name:name,id:this.$store.state.persons.commits[this.$store.state.persons.comments.length-1].id+1,body:body});name='';age='';title='';body=''">
-                  <div class="col-3" >
-                    <div style=' background : center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>                 </div>
-                      <div class="col-8 float-left">
-                        <div class="mb-3 w-75">
-                   <input class="form-control" id="message-text" v-model="body">
-                   <div >
+                  <form class="row pt-3" v-show="this.AddNewComent==true" id="form" @submit.prevent="person.participints[person.participints.length-1].comments.push({name:name,age:age,title:title,body:body});name='';age='';title='';body='' ,AddNewComent=false">
+                    <div class="col-3" >
+                    <div style=' background : center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>            
+                    <input type="text" class="form-control" placeholder="Name" name="name" v-model="name" >
+                    </div>
+                    <div class="col-8 float-left">
+                        <div class="mb-3 ">
+                        <input type="text" class="form-control" placeholder="write comment" name="body" v-model="body" required>
+                        <button class="btn btn-outline-warning text-dark text-center mb-5 btn1" value="submet" >comment</button>
+                         <div >
                      <a href="#form"> <i class="bi bi-chat-text text-dark me-3"></i></a>
                      <a href="#">    <i class="bi bi-heart text-dark me-3" ></i></a>
                      <a href="#">   <i class="bi bi-share text-dark me-3"  ></i></a>
                   </div>
                 </div> 
-                    </div> 
+                    </div>  
+            </form>
 
-                  </div>
+                   
      <!-- add comment -->
       <div class="modal fade" id="AddCommet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -171,22 +176,24 @@
 export default {
   data(){
         return {
-                   name:'',
+                   name:'giste',
                     age:55,
                     title:null,
                     body:'',
                 search:'',
-               NewPerson:{name:'guist' ,age:this.age,participints:[{ body:this.body}]},
+                indexParticipant:null,
+               NewPerson:{name:'guist' ,age:this.age,body:this.body},
                AddNewComent:false,
              }
             },
        computed:{
         filtredSearch() {
         let self = this;
+        console.log(this.$store.state.persons)
          return this.$store.state.persons.filter((person) =>
-        person?.participints?.some((item) =>
+   person?.participints?.some((item) =>
           item?.title?.toLowerCase().includes(self.search?.toLowerCase()) || item?.type == this.$store.state.TheType
-        )
+         )
       )}
 
       }
@@ -194,7 +201,7 @@ export default {
 
 };
 </script>
-<style>
+<style scoped>
 .form-control {
   border-radius: 20px;
   outline-color: white ;
@@ -231,5 +238,13 @@ div#prices {
 }
 .comments {
      border-bottom: 1px solid #80808017;
+}
+form {
+    width: 100%;
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+     flex-direction: row !important;
+     position: relative !important;
 }
 </style>

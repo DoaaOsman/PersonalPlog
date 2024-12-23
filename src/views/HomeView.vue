@@ -16,7 +16,7 @@
             <div class="carousel-item active" >
                 <img src="4.jfif" class="d-block w-100">
                 <div class="carousel-caption ">
-                    <h3 class="center"> Lorem, ipsum dolor.</h3>
+                    <h3 class="center"> {{  }}</h3>
                 </div>
             </div>
             <div class="carousel-item">
@@ -67,14 +67,15 @@
         <h2 class="center pt-4 pb-1"> Top members </h2> 
         <div class="col-3 m-auto" style="border: #ffc311 1px solid;"></div> 
         <div class="row m-2" >
-          <div class="col-8 col-md-4 col-lg-4 col-xl-3 col-xxl-3 p-2 m-auto"  :key="job" v-for="job in 3" >
+          <div class="col-8 col-md-4 col-lg-4 col-xl-3 col-xxl-3 p-2 m-auto"  :key="job" v-for="job in sort" >
             <div class="card shadow-sm pt-4" >
                <div class="card-img-top" style="width:40%; height: 100px; background-size:cover; border-radius: 50%;margin: auto !important;" :style="{background:'no-repeat center url('+job.img+')'}"></div>
                  <div class="card-body">
+                    <h1>{{ job.countPar }}</h1>
                     <h5 class="card-title"> {{job.name}}</h5>
                      <p class="" >countery : {{job.country}}</p>
                      <p class="">age {{job.age}}</p>
-                     <p class="">total participants : {{job.countPartic}}</p>
+                     <p class="">total participants : {{job.participints.length}}</p>
                      <p class="">total shier : {{job.countliks}}</p>
                      <p class="">date : {{job.date}}</p>
 
@@ -96,7 +97,12 @@
  
 export default {
   name: 'HomeView',
-  
+  computed:{
+    // sort(){
+    //     return   this.$store.state.persons.sort((x, y) => y.participints.length - x.participints.length).slice(0, 3);
+   
+    // }  
+    }
 }
 </script>
 <style>

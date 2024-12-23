@@ -19,8 +19,8 @@ export default createStore({
       {id:1,
         name:"Mr Mohammed",
         age:48,
-        country:"sudan",
-        date:"3-6-2024" ,
+        country:"australian",
+         date:"3-6-2024" ,
         img:"3.jpg",
         participints:[
           { id:1 ,title:"the titel" ,body:'work any wary' ,liks:550 ,type:"Religious",
@@ -33,6 +33,7 @@ export default createStore({
             comments:[ { id:1 ,name:"ali" , body:'lorem' ,liks:50 , Replaycomments:[{ } ]}]
            }             
            ]
+           
         },
         {id:2,
           name:"Doaa osman",
@@ -61,9 +62,9 @@ export default createStore({
              ]
           },
           {id:3,
-            name:"Mr Dani",
-            age:48,
-            country:"sudan",
+            name:"Dani",
+            age:55,
+            country:"oman",
             date:"3-6-2004" ,
             img:"3.jpg",
             participints:[
@@ -79,8 +80,8 @@ export default createStore({
             },
             {id:4,
               name:"Fadi",
-              age:48,
-              country:"sudan",
+              age:34,
+              country:"qater",
               date:"3-6-2024" ,
               img:"3.jpg",
               participints:[
@@ -91,14 +92,41 @@ export default createStore({
                  },
                  { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
                   comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
+                 } ,
+                 { id:2 ,title:"hady" ,body:'work any wary' ,liks:100 ,type:"Religious",
+                  comments:[ { id:1 ,name:"dany" , body:'work any wary' ,liks:50 , Replaycomments:[{ } ]}]
                  }             
                  ]
               }
               ,
               {id:5,
                 name:"Ahmed Mohammed",
-                age:48,
-                country:"sudan",
+                age:19,
+                country:"egipt",
                 date:"3-6-2024" ,
                 img:"3.jpg",
                 participints:[

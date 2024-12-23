@@ -77,7 +77,7 @@ export default {
        selectedTodo:[],
        name:'Doaa Osman',
         img:this.img,
-      skill:this.skill,
+        skill:this.skill,
     }
   },
   methods:{

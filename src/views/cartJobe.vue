@@ -8,9 +8,9 @@
                     </div>
                     <div id="prices" class="collapse accordion-collapse w-25" data-bs-parent="#sort">
                         <div class="list-group">
-                            <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='' ? 'active':''" href="#" @click="$store.state.sortWith=''">All</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='name' ? 'active':''" href="#" @click="$store.state.sortWith='name'">All</a>
                             <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='age'  ? 'active':''" href="#" @click="$store.state.sortWith='age'">By Age</a>
-                            <a class="list-group-item list-group-item-action" :class="$store.state.sortWith==3  ?'active':''" href="#" @click="$store.state.sortWith=3">Countery</a>
+                            <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='Countery'  ?'active':''" href="#" @click="$store.state.sortWith='Countery'">Countery</a>
                             <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='React'  ?'active':''" href="#" @click="$store.state.sortWith='React'">Most React </a>
                             <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='Share'  ?'active':''" href="#" @click="$store.state.sortWith='Share'">Most Share </a>
                             <a class="list-group-item list-group-item-action" :class="$store.state.sortWith=='Date' ?'active':''" href="#" @click="$store.state.sortWith='Date'">Date</a>
@@ -33,7 +33,7 @@
                     <h5 class="card-title"> {{job.name}}</h5>
                      <p class="" >countery : {{job.country}}</p>
                      <p class="">age {{job.age}}</p>
-                     <p class="">total participants : {{job.participants}}</p>
+                     <p class="">total participants : {{job.participints.length}}</p>
                      <p class="">total shier : {{job.countliks}}</p>
                      <p class="">date : {{job.date}}</p>
 
@@ -74,24 +74,27 @@ export default {
       filtredSearch($data) {
            return this.$store.state.persons.filter((person) =>
            { 
- 
+            if(this.$store.state.sortWith=='name'){
+              return  this.$store.state.persons.sort((x, y) => x.age - y.age) && person?.name?.toLowerCase().includes($data.search?.toLowerCase()) 
+           }
+           else
            if(this.$store.state.sortWith=='age'){
-            console.log(this.$store.state.sortWith)
-
-            return  person?.name?.toLowerCase().includes($data.search?.toLowerCase())  && person.age >= 48
-           } 
+              return  this.$store.state.persons.sort((x, y) => x.age - y.age) && person?.name?.toLowerCase().includes($data.search?.toLowerCase()) 
+           }  else
+           if(this.$store.state.sortWith=='countery'){
+              return  this.$store.state.persons.sort((x, y) => x.country.localeCompare(y.country)) && person?.name?.toLowerCase().includes($data.search?.toLowerCase()) 
+           }
            else
            if(this.$store.state.sortWith=='React'){
-
-            return  person?.name?.toLowerCase().includes($data.search?.toLowerCase())  && person.liks >= 200
+              return  this.$store.state.persons.participints.sort((x, y) => x.participints.liks - y.participints.liks) && person?.name?.toLowerCase().includes($data.search?.toLowerCase()) 
            }
            else
            if(this.$store.state.sortWith=='Share'){
-    console.log('helo')
-            return  person?.name?.toLowerCase().includes($data.search?.toLowerCase())  && person.participints.length >= 5
+             return   this.$store.state.persons.sort((x, y) => x.participints.length-1 - y.participints.length-1) && person?.name?.toLowerCase().includes($data.search?.toLowerCase())
            }
            else
-         return  person?.name?.toLowerCase().includes($data.search?.toLowerCase()) 
+         return   this.$store.state.persons.sort((x, y) => x.name.localeCompare(y.name)) && person?.name?.toLowerCase().includes($data.search?.toLowerCase());
+
  
            }
     

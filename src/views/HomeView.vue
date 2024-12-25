@@ -67,7 +67,7 @@
         <h2 class="center pt-4 pb-1"> Top members </h2> 
         <div class="col-3 m-auto" style="border: #ffc311 1px solid;"></div> 
         <div class="row m-2" >
-          <div class="col-8 col-md-4 col-lg-4 col-xl-3 col-xxl-3 p-2 m-auto"  :key="job" v-for="job in sort" >
+          <div class="col-8 col-md-4 col-lg-4 col-xl-3 col-xxl-3 p-2 m-auto"  :key="job" v-for="job in sortedPersonsByParticipants" >
             <div class="card shadow-sm pt-4" >
                <div class="card-img-top" style="width:40%; height: 100px; background-size:cover; border-radius: 50%;margin: auto !important;" :style="{background:'no-repeat center url('+job.img+')'}"></div>
                  <div class="card-body">
@@ -97,13 +97,16 @@
  
 export default {
   name: 'HomeView',
-  computed:{
-    // sort(){
-    //     return   this.$store.state.persons.sort((x, y) => y.participints.length - x.participints.length).slice(0, 3);
-   
-    // }  
-    }
-}
+  methods: {
+  sortedPersons() {
+    return this.$store.state.persons.sort((x, y) => y.participints.length - x.participints.length).slice(0,3); 
+  }
+},
+computed: {
+  sortedPersonsByParticipants() {
+    return this.sortedPersons(); 
+  }
+}}
 </script>
 <style>
 .home{
@@ -116,4 +119,9 @@ export default {
  .carousel-caption{
     bottom: 5.25rem
  }
+ .card:hover {
+    background: #000000;
+    color: white;
+    border: 1px solid #ffc107;
+}
 </style>

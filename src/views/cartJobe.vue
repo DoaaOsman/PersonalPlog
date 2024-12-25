@@ -90,7 +90,7 @@ export default {
            }
            else
            if(this.$store.state.sortWith=='Share'){
-             return   this.$store.state.persons.sort((x, y) => x.participints.length-1 - y.participints.length-1) && person?.name?.toLowerCase().includes($data.search?.toLowerCase())
+             return  this.$store.state.persons.sort((x, y) => y.participints.length - x.participints.length)  && person?.name?.toLowerCase().includes($data.search?.toLowerCase())
            }
            else
          return   this.$store.state.persons.sort((x, y) => x.name.localeCompare(y.name)) && person?.name?.toLowerCase().includes($data.search?.toLowerCase());

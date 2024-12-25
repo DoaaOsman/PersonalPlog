@@ -101,20 +101,15 @@
                   <!-- new comment -->
                      
 
-                  <form class="row pt-3" v-show="this.AddNewComent==true" id="form" @submit.prevent="person.participints[person.participints.length-1].comments.push({name:name,age:age,title:title,body:body});name='';age='';title='';body='' ,AddNewComent=false">
+                  <form class="row pt-3" v-show="this.AddNewComent==true" id="form" @submit.prevent="person.participints[person.participints.length-1].comments.push({name:name,age:age,title:title,body:body,liks:0});name='';age='';title='';body='' ,AddNewComent=false">
                     <div class="col-3" >
                     <div style=' background : center;background-size:cover;  width:80px; height:80px; border-radius:50% ' class="img-thumbnail m-auto pb-2" alt="prophil"></div>            
-                    <input type="text" class="form-control" placeholder="Name" name="name" v-model="name" >
+                       <p>{{ this.name }}</p>                  
                     </div>
                     <div class="col-8 float-left">
                         <div class="mb-3 ">
                         <input type="text" class="form-control" placeholder="write comment" name="body" v-model="body" required>
-                        <button class="btn btn-outline-warning text-dark text-center mb-5 btn1" value="submet" >comment</button>
-                         <div >
-                     <a href="#form"> <i class="bi bi-chat-text text-dark me-3"></i></a>
-                     <a href="#">    <i class="bi bi-heart text-dark me-3" ></i></a>
-                     <a href="#">   <i class="bi bi-share text-dark me-3"  ></i></a>
-                  </div>
+                       
                 </div> 
                     </div>  
             </form>
@@ -133,32 +128,7 @@
             <router-link to="/loginPage"  @click="$store.state.activeTab='register'" class="btn w-75 d-block m-2">Create an account</router-link>
           </div>
             <div class="modal-footer">
-              <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Regist as a Guest</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered"  style="height: 70% !important;">
-          <div class="modal-content" style="height: 70% !important;">
-            <div class="modal-header">
-              <h5 class="modal" id="exampleModalToggleLabel2">Add Commit</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3 w-75">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3 w-75">
-                  <label for="message-text" class="col-form-label">Comment:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button class="btn" data-bs-target="#AddCommet" data-bs-toggle="modal" data-bs-dismiss="modal">Back </button>
+              <router-link  to="/ThreadView" class="btn">Regist as a Guest</router-link>
             </div>
           </div>
         </div>
@@ -246,5 +216,10 @@ form {
     justify-content: center;
      flex-direction: row !important;
      position: relative !important;
+}
+.modal-backdrop.show {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 </style>
